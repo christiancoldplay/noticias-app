@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Noticias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Noticias</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Lista de noticias -->
+  <div class="noticias-container">
+    
+    <!-- Tarjeta de noticia - USANDO ngFor CORRECTAMENTE -->
+    <ion-card class="noticia-card" *ngFor="let noticiaItem of noticias$ | async">
+      <img 
+        alt="Imagen de noticia" 
+        src="https://images.unsplash.com/photo-1732740986005-73e5b33f70d8?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+      />
+      <ion-card-header>
+        <ion-card-title>{{ noticiaItem.titulo }}</ion-card-title>
+        <ion-card-subtitle>{{ formatearFecha(noticiaItem.fecha) }}</ion-card-subtitle>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <p>{{ noticiaItem.descripcion }}</p>
+        
+        <ion-button 
+          expand="block" 
+          color="danger" 
+          class="delete-button"
+          (click)="eliminarNoticia(noticiaItem)"> <!-- ← noticiaItem en lugar de noticia -->
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Eliminar Noticia
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensaje cuando no hay noticias -->
+    <div class="no-noticias" *ngIf="(noticias$ | async)?.length === 0">
+      <ion-icon name="newspaper-outline" class="icono-grande"></ion-icon>
+      <h3>No hay noticias aún</h3>
+      <p>Agrega la primera noticia usando el tab "Agregar"</p>
+    </div>
+  </div>
+</ion-content>

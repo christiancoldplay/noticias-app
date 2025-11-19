@@ -1,0 +1,22 @@
+.form-container {
+  padding: 16px;
+}
+
+ion-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ion-item {
+  margin-bottom: 16px;
+  --border-radius: 8px;
+}
+
+.submit-button {
+  margin-top: 24px;
+}
+
+// Estilos para el formulario válido/inválido
+form.ng-invalid ion-button {
+  --opacity: 0.6;
+}

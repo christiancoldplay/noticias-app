@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Agregar Noticia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Agregar Noticia</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Formulario para agregar noticias -->
+  <div class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Nueva Noticia</ion-card-title>
+        <ion-card-subtitle>Completa todos los campos</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (ngSubmit)="agregarNoticia()" #noticiaForm="ngForm">
+          <!-- Título -->
+          <ion-item>
+            <ion-label position="stacked">Título *</ion-label>
+            <ion-input 
+              type="text" 
+              placeholder="Ingresa el título de la noticia"
+              [(ngModel)]="nuevaNoticia.titulo"
+              name="titulo"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <!-- Fecha -->
+          <ion-item>
+            <ion-label position="stacked">Fecha *</ion-label>
+            <ion-input 
+              type="date" 
+              [(ngModel)]="nuevaNoticia.fecha"
+              name="fecha"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <!-- Descripción -->
+          <ion-item>
+            <ion-label position="stacked">Descripción *</ion-label>
+            <ion-textarea 
+              placeholder="Describe la noticia..."
+              [(ngModel)]="nuevaNoticia.descripcion"
+              name="descripcion"
+              rows="5"
+              required
+            ></ion-textarea>
+          </ion-item>
+
+          <!-- Botón para agregar -->
+          <ion-button 
+            expand="block" 
+            type="submit" 
+            class="submit-button"
+            [disabled]="!noticiaForm.valid">
+            <ion-icon slot="start" name="add-circle"></ion-icon>
+            Agregar Noticia
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

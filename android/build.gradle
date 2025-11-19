@@ -1,0 +1,43 @@
+buildscript {
+
+  ext {
+    agp_version = '8.3.2'
+  }
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.android.tools.build:gradle:$agp_version"
+    classpath 'com.google.gms:google-services:4.4.2'
+
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+  }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+  repositories {
+    google()
+    mavenCentral()
+
+    // AGREGA estos repositorios para Capacitor y Cordova
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+    maven {
+      url "https://maven.google.com"
+    }
+
+    // FlatDir debe ir AL FINAL para evitar warnings
+    flatDir {
+      dirs("$rootDir/../node_modules/@capacitor/android/capacitor/libs")
+    }
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
