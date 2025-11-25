@@ -39,7 +39,7 @@ npm install
 # 3. Configuración Firebase
 * Crear proyecto en Firebase Console
 * Activar Firestore Database
-* Reemplazar configuración en src/environments/environment.ts
+* Crear la configuración de Firebase en src/environments/environment.ts
 
 # 4. Ejecución 
 * Version web 
